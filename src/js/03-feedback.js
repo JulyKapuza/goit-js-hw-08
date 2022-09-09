@@ -18,21 +18,31 @@ populateInputTextarea();
 // const parsedSettings = JSON.parse(savedInformation);
 
 function onFormSubmit(e) {
-    e.preventDefault();
+  e.preventDefault();
+  
+ 
     
     const email = e.currentTarget.email.value;
     const message = e.currentTarget.message.value;
-
-    const userData = {
-      email,
-      message,
-    };
+  if ((!email || !message)) {
+    alert('Заповніть поля');
     
-    console.log(userData);
-    e.currentTarget.reset();
-    localStorage.removeItem(STORAGE_KEY);
+  } else {
+   const userData = {
+     email,
+     message,
+   };
+
+   console.log(userData);
+   e.currentTarget.reset();
+   localStorage.removeItem(STORAGE_KEY);
+  }
+
+    
 
 };
+
+
 
 function onTextareaInput(e) {
 

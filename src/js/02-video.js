@@ -15,6 +15,17 @@ function onUpdateTime(e) {
 const currentTime = localStorage.getItem('videoplayer-current-time');
 const parsedTime = JSON.parse(currentTime);
 
+let timeData = 0;
 
-player.setCurrentTime(parsedTime.seconds)
-// console.log(parsedTime.seconds)
+function checkTime() {
+  if (parsedTime.seconds) {
+    timeData = parsedTime.seconds;
+  } else {
+    timeData = 0;
+  }
+}
+
+checkTime();
+
+player.setCurrentTime(timeData)
+// console.log(timeData);
