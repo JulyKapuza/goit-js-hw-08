@@ -8,24 +8,27 @@ const player = new Player(iframe);
 player.on('timeupdate', throttle(onUpdateTime, 1000));
 
 function onUpdateTime(e) {
-  // console.log(e);
-  let currentTime = e;
-  localStorage.setItem('videoplayer-current-time', JSON.stringify(currentTime));
+
+  let currentSecond = e.seconds;
+  localStorage.setItem(
+    'videoplayer-current-time',
+    JSON.stringify(currentSecond)
+  );
 }
+
 const currentTime = localStorage.getItem('videoplayer-current-time');
-const parsedTime = JSON.parse(currentTime);
 
 let timeData = 0;
 
-function checkTime() {
-  if (parsedTime.seconds) {
-    timeData = parsedTime.seconds;
+function checkTime(currentTime) {
+  if (currentTime) {
+    timeData = JSON.parse(currentTime);
   } else {
     timeData = 0;
   }
 }
 
-checkTime();
+checkTime(currentTime);
 
 player.setCurrentTime(timeData)
-// console.log(timeData);
+console.log(timeData);
